@@ -27,7 +27,7 @@ class MakeConfigFileCommand extends Command
             
             $config_file = file_get_contents(__DIR__ . "/../../../config/roleduodoctor.php");
 
-            $arquivo = fopen(__DIR__ . "/../../../../../../config/roleduodoctor.php", "w");
+            $arquivo = fopen(base_path() . "/config/roleduodoctor.php", "w");
             fwrite($arquivo, $config_file);
             fclose($arquivo);
 
