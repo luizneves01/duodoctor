@@ -1,0 +1,41 @@
+{
+    "name": "duodoctor/setuprolepermission",
+    "description": "Seta todas as roles e permissions com base em rotas do sistema",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Duodoctor\\Setuprolepermission\\": "src/",
+            "Command\\": "src/app/Console/Commands",
+            "Entity\\":  "src/app/Entity",
+            "Models\\":  "src/app/Models",
+            "Facades\\":  "src/app/Facades"
+        }
+    },
+    "authors": [
+        {
+            "name": "Luiz Felipe Neves"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.4.0",
+        "illuminate/support": "^8.0|^9.0",
+        "illuminate/console": "^8.0|^9.0",
+        "illuminate/database": "^8.0|^9.0",
+        "illuminate/filesystem": "^8.0|^9.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.1",
+        "orchestra/testbench": "^3.0",
+        "phpunit/phpunit": "^7.0"
+    },
+    "prefer-stable": true,
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Duodoctor\\Setuprolepermission\\SetupRolePermissionServiceProvider"
+            ]
+        }
+    }
+}
