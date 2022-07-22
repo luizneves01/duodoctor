@@ -27,3 +27,27 @@ php artisan roleduodoctor:proprietario
 ```
 
 Comando para atribuir todas as rotas cadastradas para a permission **Proprietário**.
+
+```bash
+php artisan roleduodoctor:config
+```
+
+Comando para criar arquivo de configuração **roleduodoctor.php**
+
+O arquivo de configuração deve ter a seguinte estrutura:
+
+~~~php
+<?php
+/**
+ * config file duodoctor/setuprolepermission
+ */
+return [
+
+    /**
+     * Roles extras 
+     */
+    "extra_roles" => [
+        ['name' => '', 'group' => '', 'code' => '']
+    ]
+];
+~~~
