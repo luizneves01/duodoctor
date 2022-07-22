@@ -5,8 +5,10 @@ namespace Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Console\Command;
 use Facades\RolesFacades;
+use Entity\RolesEntity;
 use Models\Role;
 use Models\RoleGroup;
 use Models\RolePermission;
@@ -18,6 +20,7 @@ class SetupCommand extends Command
 
     protected $created = 0;
     protected $attemps = 0;
+    protected $config = null;
     protected $roles = [];
 
     /**
@@ -37,6 +40,14 @@ class SetupCommand extends Command
     public function __construct(RolesFacades $facades)
     {
         parent::__construct();
+        $this->config = config('roleduodoctor');
+        if($this->config){
+            foreach($this->config["extra_roles"] as $extra_role) {
+                if(!empty($extra_role['name']))
+                    $facades->setRoles(new RolesEntity($extra_role['name'], $extra_role['code'], $extra_role['group']));
+            }
+        }
+
         $this->roles = $facades->getRoles();
     }
 

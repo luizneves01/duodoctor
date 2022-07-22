@@ -23,7 +23,7 @@ class RolesFacades {
         }
     }
 
-    protected function setRoles(RolesEntity $role)
+    public function setRoles(RolesEntity $role)
     {
         $this->roles[] = $role;
     }

@@ -5,6 +5,7 @@ namespace Duodoctor\Setuprolepermission;
 use Illuminate\Support\ServiceProvider;
 use Command\SetupCommand;
 use Command\ProprietarioCommand;
+use Command\MakeConfigFileCommand;
 
 class SetupRolePermissionServiceProvider extends ServiceProvider {
 
@@ -16,7 +17,8 @@ class SetupRolePermissionServiceProvider extends ServiceProvider {
         if ($this->app->runningInConsole()) {
             $this->commands([
                 SetupCommand::class,
-                ProprietarioCommand::class
+                ProprietarioCommand::class,
+                MakeConfigFileCommand::class
             ]);
         }
     }
