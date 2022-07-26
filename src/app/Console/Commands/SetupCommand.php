@@ -67,11 +67,6 @@ class SetupCommand extends Command
 
             $this->attemps++;
 
-            if($this->attemps < 60){
-                $this->attemps++;
-                continue;
-            }            
-
             $role_instructions = collect($this->roles)->where('code', $route['action']['code'] ?? 'undefined')->first();
 
             $method = $route['method'] ?? "GET";
