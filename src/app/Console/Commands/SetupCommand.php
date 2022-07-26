@@ -51,6 +51,11 @@ class SetupCommand extends Command
         $this->roles = $facades->getRoles();
     }
 
+    protected function replaceParam($uri, $re = '/{.*?}/m', $subst = '{param}')
+    {
+        return preg_replace($re, $subst, $uri);
+    }
+
     public function handle()
     {
 
@@ -62,6 +67,11 @@ class SetupCommand extends Command
 
             $this->attemps++;
 
+            if($this->attemps < 60){
+                $this->attemps++;
+                continue;
+            }            
+
             $role_instructions = collect($this->roles)->where('code', $route['action']['code'] ?? 'undefined')->first();
 
             $method = $route['method'] ?? "GET";
@@ -69,8 +79,7 @@ class SetupCommand extends Command
             $name = $route['action']['as'] ?? "undefined";
             $nameRole = $role_instructions->name ?? "undefined";
             $nameRoleGroup = $role_instructions->group ?? "undefined";            
-            $route = $route['uri'] ?? "/";
-
+            $route = $route['uri'] ? $this->replaceParam($route['uri']) : "/";
             $this->createRoute($method, $route, $code, $name, $nameRole, $nameRoleGroup, $service);
         }
 
