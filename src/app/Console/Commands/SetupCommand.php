@@ -59,7 +59,7 @@ class SetupCommand extends Command
     public function handle()
     {
 
-        $service = $this->argument('service') ?? "";
+        $service = $this->argument('service') ?  "/" . $this->argument('service') : "";
 
         $routes = Route::getRoutes();
 
